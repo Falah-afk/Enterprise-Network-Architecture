@@ -23,7 +23,7 @@ Berikut adalah rancangan topologi fisik dan logis dari jaringan ini:
 | IT (VLAN 30) | 192.168.30.0 | 192.168.30.2 - 254 | 192.168.30.255 | 192.168.30.1 |
 | GUEST (VLAN 40) | 192.168.40.0 | 192.168.40.2 - 254 | 192.168.40.255 | 192.168.40.1 |
 
-##  Testing & Verification
+## 🧪 Testing & Verification
 Berikut adalah dokumentasi pengujian konektivitas yang memastikan arsitektur berjalan sesuai desain:
 
 **1. Inter-VLAN Routing Test**
@@ -33,4 +33,3 @@ Berikut adalah dokumentasi pengujian konektivitas yang memastikan arsitektur ber
 **2. NAT & External Routing Test**
 *Bukti bahwa Router berhasil menerjemahkan IP Private menjadi IP Public (NAT Overload) dan menjangkau Internet/Cloud:*
 ![Ping Internet](Ping_Internet.png)
-
