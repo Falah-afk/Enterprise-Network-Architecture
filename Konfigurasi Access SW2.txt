@@ -1,0 +1,25 @@
+enable
+configure terminal
+
+! Membuat VLAN
+vlan 30
+name IT
+vlan 40
+name GUEST
+exit
+
+! Mendaftarkan Port ke VLAN masing-masing
+interface FastEthernet0/1
+switchport mode access
+switchport access vlan 30
+exit
+
+interface FastEthernet0/2
+switchport mode access
+switchport access vlan 40
+exit
+
+! Mengaktifkan mode Trunk ke arah Core Switch
+interface GigabitEthernet0/1
+switchport mode trunk
+exit

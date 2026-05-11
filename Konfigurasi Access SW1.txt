@@ -1,0 +1,25 @@
+enable
+configure terminal
+
+! Membuat VLAN
+vlan 10
+name HR
+vlan 20
+name FINANCE
+exit
+
+! Mendaftarkan Port ke VLAN masing-masing
+interface FastEthernet0/1
+switchport mode access
+switchport access vlan 10
+exit
+
+interface FastEthernet0/2
+switchport mode access
+switchport access vlan 20
+exit
+
+! Mengaktifkan mode Trunk ke arah Core Switch
+interface GigabitEthernet0/1
+switchport mode trunk
+exit

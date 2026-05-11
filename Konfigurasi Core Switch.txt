@@ -1,0 +1,72 @@
+enable
+configure terminal
+
+! Mengaktifkan kemampuan Routing (Wajib)
+ip routing
+
+! Mendaftarkan semua VLAN
+vlan 10
+name HR
+vlan 20
+name FINANCE
+vlan 30
+name IT
+vlan 40
+name GUEST
+exit
+
+! Mengaktifkan Trunk ke arah Access SW1 dan SW2
+interface range GigabitEthernet1/0/2 - 3
+switchport mode trunk
+exit
+
+! Membuat SVI (Gateway) untuk masing-masing VLAN
+interface vlan 10
+ip address 192.168.10.1 255.255.255.0
+no shutdown
+exit
+interface vlan 20
+ip address 192.168.20.1 255.255.255.0
+no shutdown
+exit
+interface vlan 30
+ip address 192.168.30.1 255.255.255.0
+no shutdown
+exit
+interface vlan 40
+ip address 192.168.40.1 255.255.255.0
+no shutdown
+exit
+
+! Konfigurasi DHCP Server untuk otomatisasi IP
+ip dhcp excluded-address 192.168.10.1
+ip dhcp excluded-address 192.168.20.1
+ip dhcp excluded-address 192.168.30.1
+ip dhcp excluded-address 192.168.40.1
+
+ip dhcp pool POOL_HR
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+exit
+ip dhcp pool POOL_FINANCE
+network 192.168.20.0 255.255.255.0
+default-router 192.168.20.1
+exit
+ip dhcp pool POOL_IT
+network 192.168.30.0 255.255.255.0
+default-router 192.168.30.1
+exit
+ip dhcp pool POOL_GUEST
+network 192.168.40.0 255.255.255.0
+default-router 192.168.40.1
+exit
+
+! Mengubah port ke arah Router menjadi Layer 3 (Routed Port)
+interface GigabitEthernet1/0/1
+no switchport
+ip address 10.10.10.2 255.255.255.252
+no shutdown
+exit
+
+! Memberi tahu rute ke luar (Internet)
+ip route 0.0.0.0 0.0.0.0 10.10.10.1
