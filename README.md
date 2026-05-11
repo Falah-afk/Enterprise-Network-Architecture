@@ -27,9 +27,7 @@ Berikut adalah rancangan topologi fisik dan logis dari jaringan ini:
 Berikut adalah dokumentasi pengujian konektivitas yang memastikan arsitektur berjalan sesuai desain:
 
 **1. Inter-VLAN Routing Test**
-*Bukti bahwa PC antar divisi (beda subnet) berhasil berkomunikasi melalui Multilayer Switch tanpa hambatan:*
 ![Ping Inter-VLAN](Ping_InterVLAN.png)
 
 **2. NAT & External Routing Test**
-*Bukti bahwa Router berhasil menerjemahkan IP Private menjadi IP Public (NAT Overload) dan menjangkau Internet/Cloud:*
 ![Ping Internet](Ping_Internet.png)
